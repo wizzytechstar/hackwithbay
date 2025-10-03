@@ -1,0 +1,117 @@
+
+        body {
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        /* Had to fix scrollbar because default was ugly */
+        .chat-scroll {
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 #f1f5f9;
+        }
+        .chat-scroll::-webkit-scrollbar {
+            width: 6px; /* tried 8px first but looked too chunky */
+        }
+        .chat-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px; /* rounded corners look better */
+        }
+        /* Upload zone styling  */
+        .upload-area {
+            border: 2px dashed #cbd5e1;
+            transition: all 0.3s ease; /* smooth hover effect */
+        }
+        .upload-area.dragover {
+            border-color: #3b82f6; /* blue when dragging files over */
+            background-color: #eff6ff;
+        }
+        
+        /* Mobile sidebar animation - had issues with this on iPhone */
+        .sidebar-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+        @media (max-width: 768px) {
+            .sidebar-mobile {
+                transform: translateX(-100%); /* hide sidebar off-screen */
+            }
+            .sidebar-mobile.open {
+                transform: translateX(0); /* slide it back in */
+            }
+        }
+        
+        /* Message animations -  something subtle but nice */
+        .message-enter {
+            animation: messageSlideIn 0.3s ease-out;
+        }
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px); /* slide up from bottom */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* File upload animation - different from messages to feel more natural */
+        .file-enter {
+            animation: fileSlideIn 0.4s ease-out;
+        }
+        @keyframes fileSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px); /* slide in from left */
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Hover effects  */
+        .hover-lift {
+            transition: all 0.2s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-2px); /* just a tiny lift, not too much */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        /* Chat bubble hover effects - AI messages */
+        .chat-bubble {
+            transition: all 0.2s ease;
+        }
+        .chat-bubble:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* subtle shadow */
+            transform: translateY(-1px);
+        }
+        
+        /* User message bubbles - slightly different blue tint */
+        .user-bubble {
+            transition: all 0.2s ease;
+        }
+        .user-bubble:hover {
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15); /* blue-ish shadow */
+            transform: translateY(-1px);
+        }
+        
+        /* Success animation when file finishes processing */
+        .upload-success {
+            animation: successPulse 0.6s ease-out;
+        }
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); } /* tiny bounce */
+            100% { transform: scale(1); }
+        }
+        /* Loading spinner - simple rotation */
+        .processing-spinner {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); } /* full circle */
+        }
+  
